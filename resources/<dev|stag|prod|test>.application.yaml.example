@@ -1,0 +1,16 @@
+apps:
+  name: 'mini_project_echo'
+  version: '1.0.0'
+server:
+  port: 9091
+database:
+  url: 'localhost'
+  port: '5432'
+  databaseName: ''
+  username: ''
+  password: ''
+  schema: 'public.'
+  connectionTimeout: '20s'
+  maxIdleConnection: 5
+  maxOpenConnection: 10
+  debugMode: true
