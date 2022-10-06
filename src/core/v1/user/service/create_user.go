@@ -8,7 +8,7 @@ import (
 )
 
 func (s *UserService) CreateUser(payload *dto_service_user_v1.CreateUserDTO) error {
-	userModel, err := util.ConvertToType[model.User](struct {
+	userModel, err := util.ConvertToStruct[model.User](struct {
 		*request_controller_user_v1.CreateUserRequestBody
 	}{payload.Body})
 	if err != nil {

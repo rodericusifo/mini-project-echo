@@ -8,7 +8,7 @@ import (
 )
 
 func (s *UserService) GetUser(payload *dto_service_user_v1.GetUserDTO) (*dto_service_user_v1.UserDTO, error) {
-	userModel, err := util.ConvertToType[model.User](struct {
+	userModel, err := util.ConvertToStruct[model.User](struct {
 		*request_controller_user_v1.GetUserRequestParam
 	}{payload.Param})
 	if err != nil {
@@ -20,10 +20,10 @@ func (s *UserService) GetUser(payload *dto_service_user_v1.GetUserDTO) (*dto_ser
 		return nil, err
 	}
 
-	userDto, err := util.ConvertToType[dto_service_user_v1.UserDTO](userModelRes)
+	userDto, err := util.ConvertToStruct[*dto_service_user_v1.UserDTO](userModelRes)
 	if err != nil {
 		return nil, err
 	}
 
-	return &userDto, nil
+	return userDto, nil
 }

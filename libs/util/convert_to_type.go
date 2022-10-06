@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 )
 
-func ConvertToType[varType any](obj any) (varType, error) {
-	c := new(varType)
+func ConvertToStruct[T any](obj any) (T, error) {
+	c := new(T)
 	bytes, err := json.Marshal(obj)
 	if err != nil {
 		return *c, err
