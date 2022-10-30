@@ -5,8 +5,8 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/rodericusifo/mini-project-echo/libs/filter"
+	"github.com/rodericusifo/mini-project-echo/src/core/v1"
 	my_validator "github.com/rodericusifo/mini-project-echo/libs/validator"
-	"github.com/rodericusifo/mini-project-echo/wire"
 )
 
 func main() {
@@ -21,12 +21,7 @@ func main() {
 	)
 
 	// Version 1
-	v1 := e.Group("/v1")
-	{
-		v1User := v1.Group("/users")
-		v1UserController := wire.UserControllerV1()
-		v1UserController.Mount(v1User)
-	}
+	v1.NewRoutes(e)
 
 	e.Logger.Fatal(e.Start(":8888"))
 }

@@ -7,18 +7,16 @@
 package wire
 
 import (
-	"github.com/rodericusifo/mini-project-echo/libs/database"
 	"github.com/rodericusifo/mini-project-echo/src/core/v1/user/controller"
-	"github.com/rodericusifo/mini-project-echo/src/core/v1/user/repository"
+	"github.com/rodericusifo/mini-project-echo/src/core/v1/user/resource"
 	"github.com/rodericusifo/mini-project-echo/src/core/v1/user/service"
 )
 
 // Injectors from wire.go:
 
 func UserControllerV1() *controller_user_v1.UserController {
-	db := database.InitDatabase()
-	iUserRepository := repository_user_v1.InitUserRepository(db)
-	iUserService := service_user_v1.InitUserService(iUserRepository)
+	iUserResource := resource_user_v1.InitUserResource()
+	iUserService := service_user_v1.InitUserService(iUserResource)
 	userController := controller_user_v1.InitUserController(iUserService)
 	return userController
 }

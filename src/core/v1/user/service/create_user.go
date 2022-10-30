@@ -15,7 +15,7 @@ func (s *UserService) CreateUser(payload *dto_service_user_v1.CreateUserDTO) err
 		return err
 	}
 
-	err = s.UserRepository.CreateUser(&userModel)
+	err = s.UserResource.CreateUser(&userModel)
 	if err != nil {
 		return err
 	}

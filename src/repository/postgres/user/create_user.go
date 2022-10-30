@@ -1,4 +1,4 @@
-package repository_user_v1
+package user_postgres_repository
 
 import (
 	"github.com/rodericusifo/mini-project-echo/src/model"

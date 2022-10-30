@@ -3,8 +3,8 @@ package constant
 type EnvironmentType string
 
 var (
-	DEV  = EnvironmentType("DEV")
-	STAG = EnvironmentType("STAG")
-	PROD = EnvironmentType("PROD")
-	TEST = EnvironmentType("TEST")
+	DEV  = EnvironmentType("dev")
+	STAG = EnvironmentType("stag")
+	PROD = EnvironmentType("prod")
+	TEST = EnvironmentType("test")
 )

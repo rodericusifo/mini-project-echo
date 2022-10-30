@@ -5,9 +5,9 @@ import (
 )
 
 type DefaultConfig struct {
-	Apps     Apps       `mapstructure:"apps"`
-	Server   Server     `mapstructure:"server"`
-	Database Datasource `mapstructure:"database"`
+	Apps     Apps     `mapstructure:"apps"`
+	Server   Server   `mapstructure:"server"`
+	Database Database `mapstructure:"database"`
 }
 
 type Apps struct {
@@ -30,4 +30,8 @@ type Datasource struct {
 	MaxIdleConnection int           `mapstructure:"maxIdleConnection"`
 	MaxOpenConnection int           `mapstructure:"maxOpenConnection"`
 	DebugMode         bool          `mapstructure:"debugMode"`
+}
+
+type Database struct {
+	Postgres Datasource `mapstructure:"postgres"`
 }

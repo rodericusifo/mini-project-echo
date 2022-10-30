@@ -25,15 +25,15 @@ func ConfigApps() *DefaultConfig {
 
 	switch constant.EnvironmentType(*environment) {
 	case constant.DEV:
-		viper.SetConfigFile("./resources/dev.application.yaml")
+		viper.SetConfigFile("./environments/dev.application.yaml")
 	case constant.STAG:
-		viper.SetConfigFile("./resources/stag.application.yaml")
+		viper.SetConfigFile("./environments/stag.application.yaml")
 	case constant.PROD:
-		viper.SetConfigFile("./resources/prod.application.yaml")
+		viper.SetConfigFile("./environments/prod.application.yaml")
 	case constant.TEST:
-		viper.SetConfigFile("./resources/test.application.yaml")
+		viper.SetConfigFile("./environments/test.application.yaml")
 	default:
-		panic(errors.New("input environment type [ DEV | STAG | PROD | TEST]"))
+		panic(errors.New("input environment type [ dev | stag | prod | test]"))
 	}
 
 	if err := viper.ReadInConfig(); err != nil {
@@ -48,7 +48,12 @@ func ConfigApps() *DefaultConfig {
 	return &conf
 }
 
-func ConfigureDatabase(ds Datasource) *gorm.DB {
+func ConfigureDatabase(ds Datasource, dialect constant.DialectDatabaseType) *gorm.DB {
+	var (
+		db *gorm.DB
+		err error
+	)
+	
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=require search_path=%s",
 		ds.Url,
 		ds.Username,
@@ -69,9 +74,12 @@ func ConfigureDatabase(ds Datasource) *gorm.DB {
 		cfg.Logger = logger.Default.LogMode(logger.Info)
 	}
 
-	db, err := gorm.Open(postgres.Open(dsn), cfg)
-	if err != nil {
-		logrus.Panic(err)
+	switch dialect {
+	case constant.POSTGRES:
+		db, err = gorm.Open(postgres.Open(dsn), cfg)
+		if err != nil {
+			logrus.Panic(err)
+		}
 	}
 
 	// Auto Migration Models

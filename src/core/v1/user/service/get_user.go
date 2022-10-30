@@ -15,7 +15,7 @@ func (s *UserService) GetUser(payload *dto_service_user_v1.GetUserDTO) (*dto_ser
 		return nil, err
 	}
 
-	userModelRes, err := s.UserRepository.GetUser(nil, &userModel)
+	userModelRes, err := s.UserResource.GetUser(nil, &userModel)
 	if err != nil {
 		return nil, err
 	}

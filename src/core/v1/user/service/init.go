@@ -1,7 +1,7 @@
 package service_user_v1
 
 import (
-	repository_user_v1 "github.com/rodericusifo/mini-project-echo/src/core/v1/user/repository"
+	resource_user_v1 "github.com/rodericusifo/mini-project-echo/src/core/v1/user/resource"
 	dto_service_user_v1 "github.com/rodericusifo/mini-project-echo/src/core/v1/user/service/dto"
 )
 
@@ -11,11 +11,11 @@ type IUserService interface {
 }
 
 type UserService struct {
-	UserRepository repository_user_v1.IUserRepository
+	UserResource resource_user_v1.IUserResource
 }
 
-func InitUserService(userRepository repository_user_v1.IUserRepository) IUserService {
+func InitUserService(userResource resource_user_v1.IUserResource) IUserService {
 	return &UserService{
-		UserRepository: userRepository,
+		UserResource: userResource,
 	}
 }
