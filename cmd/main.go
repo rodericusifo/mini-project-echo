@@ -5,8 +5,8 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/rodericusifo/mini-project-echo/libs/filter"
-	"github.com/rodericusifo/mini-project-echo/src/core/v1"
 	my_validator "github.com/rodericusifo/mini-project-echo/libs/validator"
+	v1 "github.com/rodericusifo/mini-project-echo/src/core/v1"
 )
 
 func main() {
@@ -21,7 +21,7 @@ func main() {
 	)
 
 	// Version 1
-	v1.NewRoutes(e)
+	v1.InitRoutes(e)
 
 	e.Logger.Fatal(e.Start(":8888"))
 }

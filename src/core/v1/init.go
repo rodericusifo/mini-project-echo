@@ -5,7 +5,7 @@ import (
 	"github.com/rodericusifo/mini-project-echo/wire"
 )
 
-func NewRoutes(e *echo.Echo) {
+func InitRoutes(e *echo.Echo) {
 	v1 := e.Group("/v1")
 	{
 		v1User := v1.Group("/users")
