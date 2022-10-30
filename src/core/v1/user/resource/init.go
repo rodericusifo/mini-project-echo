@@ -18,10 +18,10 @@ type UserResource struct {
 
 func InitUserResource() IUserResource {
 	var (
-		postgresDatabase = database.InitPostgresDatabase()
+		postgres = database.InitPostgres()
 	)
 
 	return &UserResource{
-		Postgres: postgresDatabase,
+		Postgres: postgres,
 	}
 }
