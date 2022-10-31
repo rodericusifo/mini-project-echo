@@ -6,11 +6,7 @@ import (
 	postgres_repository "github.com/rodericusifo/mini-project-echo/src/repository/postgres"
 )
 
-var (
-	configApps = config.ConfigApps()
-)
-
 func InitPostgres() *postgres_repository.PostgresRepository {
-	db := config.ConfigureDatabase(configApps.Database.Postgres, constant.POSTGRES)
+	db := config.ConfigureDatabase(config.AppConfig.Database.Postgres, constant.POSTGRES)
 	return postgres_repository.InitPostgresRepository(db)
 }

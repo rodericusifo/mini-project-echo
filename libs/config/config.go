@@ -16,7 +16,11 @@ import (
 	"github.com/rodericusifo/mini-project-echo/src/model"
 )
 
-func ConfigApps() *DefaultConfig {
+var (
+	AppConfig *DefaultConfig
+)
+
+func ConfigApps() {
 	var (
 		environment = flag.String("env", "", "input the environment type")
 	)
@@ -45,15 +49,15 @@ func ConfigApps() *DefaultConfig {
 		logrus.Panic(err)
 	}
 
-	return &conf
+	AppConfig = &conf
 }
 
 func ConfigureDatabase(ds Datasource, dialect constant.DialectDatabaseType) *gorm.DB {
 	var (
-		db *gorm.DB
+		db  *gorm.DB
 		err error
 	)
-	
+
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=require search_path=%s",
 		ds.Url,
 		ds.Username,
