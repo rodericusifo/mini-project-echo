@@ -13,7 +13,7 @@ import (
 )
 
 func CustomHTTPErrorHandler(err error, ctx echo.Context) {
-	logrus.Infof("error type %T", err)
+	logrus.Infof("error type %T\n", err)
 	he, ok := err.(*echo.HTTPError)
 	if ok {
 		ctx.JSON(he.Code, response.ResponseFail(fmt.Sprint(he.Message), he.Internal))
